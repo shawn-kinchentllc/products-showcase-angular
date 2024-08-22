@@ -20,4 +20,3 @@ export class ProductsService {
     return this.httpClient.get<Products>(`${this.baseUrl}/search?q=${value}`);
   }
 }
-
