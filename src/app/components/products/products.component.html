@@ -1,0 +1,39 @@
+<div class="pad-50">
+  <div>
+    <label for="productIdInput">Enter a Product Id to view a Product:</label>
+    <div class="input-group pad-botton-20 width-25-pct">
+      <input id="productIdInput" type="text" class="form-control" [(ngModel)]="searchId" placeholder="Product ID...">
+      <button type="button" class="btn btn-primary" (click)="getProductById()">Search</button>
+      <button type="button" class="btn btn-secondary" (click)="clearIdSearch()">Clear</button>
+    </div>
+  </div>
+  <div *ngIf="searchIdResult; else noRecordsFound">
+    <span>ID: {{searchIdResult.id}}</span><br>
+    <span>Title: {{searchIdResult.title}}</span><br>
+    <span>Description: {{searchIdResult.description}}</span><br>
+    <span>Price: {{searchIdResult.price}}</span>
+  </div>
+</div>
+
+<div class="pad-50">
+  <div>
+    <label for="productPhraseInput">Enter a search value to filter Products containting the value in the Title and/or Description:</label>
+    <div class="input-group pad-botton-20 width-50-pct">
+      <input id="productPhraseInput" type="text" class="form-control" [(ngModel)]="searchPhrase" placeholder="Search Prase...">
+      <button type="button" class="btn btn-primary" (click)="getProductByPhrase()">Search</button>
+      <button type="button" class="btn btn-secondary" (click)="clearPhraseSearch()">Clear</button>
+    </div>
+  </div>
+  <div *ngIf="searchPhraseHasRecords; else noRecordsFound" class="">
+    <div *ngFor="let searchResult of searchPhraseResults" class="pad-botton-20">
+      <span>ID: {{searchResult.id}}</span><br>
+      <span>Title: {{searchResult.title}}</span><br>
+      <span>Description: {{searchResult.description}}</span><br>
+      <span>Price: {{searchResult.price}}</span><br>
+    </div>
+  </div> 
+</div>
+
+<ng-template #noRecordsFound>
+  <span>No Records Found</span>
+</ng-template>
